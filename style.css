@@ -1,0 +1,408 @@
+.navbar {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease;
+}
+
+.navbar-transparent {
+  opacity: 0.9; /* Set opacity sesuai kebutuhan */
+}
+
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.fade-visible {
+  opacity: 1;
+}
+
+/* Mengatur ulang padding pada section #home untuk memberi ruang lebih di atas foto */
+#home {
+  padding-top: 150px; /* Menambahkan padding atas lebih banyak untuk memberi ruang di atas foto */
+  padding-bottom: 20px; /* Mengurangi padding bawah agar lebih rapat */
+  height: auto; /* Menjaga tinggi otomatis agar konten menyesuaikan */
+}
+
+/* Foto Profil tetap besar seperti semula */
+#home .w-64, #home .h-64 {
+  width: 10rem; /* Ukuran foto tetap besar */
+  height: 10rem; /* Ukuran foto tetap besar */
+}
+
+/* Foto di layar kecil */
+#home .sm\:w-48, #home .sm\:h-48 {
+  width: 12rem; /* Ukuran foto tetap besar untuk layar kecil */
+  height: 12rem; /* Ukuran foto tetap besar untuk layar kecil */
+}
+
+/* Mengurangi margin antara nama dan deskripsi */
+h1 {
+  margin-bottom: 8px; /* Mengurangi margin bawah antara nama dan deskripsi */
+}
+
+/* Mengurangi margin antara deskripsi dan tombol */
+#home .text-lg {
+  margin-bottom: 6px; /* Mengurangi margin bawah pada deskripsi */
+}
+
+/* Tombol Learn More About Me - Mengurangi margin bawah */
+#home a {
+  padding: 12px 24px; /* Ukuran padding tombol tetap nyaman */
+  margin-top: 15px; /* Mengurangi jarak atas tombol agar lebih rapat */
+  margin-bottom: 10px; /* Mengurangi jarak bawah tombol */
+}
+
+.jarak {
+  margin-top: 20px; /* Atur jarak sesuai kebutuhan */
+  font-size: 20px;
+}
+
+/* Awal Section About Me */
+/* Awal Section About Me */
+/* Awal Section About Me */
+/* Mengurangi tinggi dari section dengan id 'about' */
+#about {
+  padding-top: 40px; /* Atur padding sesuai kebutuhan */
+  padding-bottom: 40px; /* Atur padding sesuai kebutuhan */
+  height: auto; /* Menghilangkan h-screen agar lebih fleksibel */
+}
+
+/* Mengurangi margin dan padding dari card */
+.card {
+  margin: 0; /* Mengurangi margin */
+  padding: 16px; /* Mengurangi padding */
+}
+
+/* Mengurangi padding dan margin pada div yang membungkus gambar */
+.md\:w-1\/3 {
+  padding: 0; /* Mengurangi padding jika ada */
+}
+
+/* Mengurangi padding di kanan pada konten */
+.md\:w-2\/3 {
+  padding: 20px; /* Bisa dikurangi agar ruang lebih rapat */
+}
+
+/* Mengurangi spasi antar elemen dalam card */
+.card-image {
+  padding: 0;
+  margin: 0;
+}
+
+/* Mengurangi jarak vertikal antara teks */
+h2 {
+  margin-bottom: 10px; /* Mengurangi jarak antara judul dan paragraf */
+}
+
+/* Mengurangi jarak antar paragraf */
+p {
+  margin-bottom: 16px; 
+  margin-top: -12px;/* Mengurangi jarak antar paragraf */
+}
+/* Akhir Section About Me */
+/* Akhir Section About Me */
+/* Akhir Section About Me */
+
+
+/* Section Styling */
+#skills {
+  padding-bottom: 4rem; /* Add padding at the bottom */
+  background-color: #f7fafc; /* Gray background */
+}
+
+/* Grid Layout */
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns for large screens */
+  gap: 2rem; /* Space between the cards */
+}
+
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for medium screens */
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    grid-template-columns: 1fr; /* 1 column for small screens */
+  }
+  /* Ensure proper spacing between cards on mobile */
+  .skill-card {
+    margin-bottom: 16px; /* Margin to avoid overlapping with other elements */
+  }
+}
+
+/* Skill Card Styling */
+.skill-card {
+  background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  backdrop-filter: blur(10px); /* Blurring background */
+  margin-bottom: 24px; /* Ensure each card has space at the bottom */
+}
+
+.skill-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Icon Container */
+.icon-container {
+  margin-bottom: 12px;
+}
+
+.icon-container i,
+.icon-container img {
+  transition: transform 0.3s ease;
+}
+
+.skill-card:hover .icon-container i,
+.skill-card:hover .icon-container img {
+  transform: scale(1.2);
+}
+
+/* Skill Title and Description */
+h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-top: 16px;
+}
+
+p {
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-top: 8px;
+}
+
+
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+}
+
+#projects {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #fff;
+}
+
+#projects h2 {
+  margin-bottom: 50px;
+  margin-top: -150px;
+  color: #333;
+}
+
+.projects-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.project-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  overflow: hidden;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.project-card .card-content {
+  padding: 20px;
+  transition: transform 0.3s;
+}
+
+.project-card h3 {
+  margin: 10px 0;
+  color: #333;
+  font-size: 1.5em;
+  transition: color 0.3s;
+}
+
+.project-card p {
+  color: #777;
+  transition: color 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 16px 24px rgba(0, 0, 0, 0.2);
+  border-color: #4A90E2;
+  border: 2.5px solid #4A90E2;
+}
+
+.project-card:hover img {
+  transform: scale(1.1);
+}
+
+.project-card:hover .card-content {
+  transform: translateY(-10px);
+}
+
+.project-card:hover h3,
+.project-card:hover p {
+  color: #333;
+}
+
+.project-card .border-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid transparent;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.project-card:hover .border-animation {
+  border-color: #333;
+  transform: scale(1.05);
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding-top: 60px;
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Card Projects */
+/* Card Projects */
+/* Card Projects */
+.project-card img {
+  transition: filter 0.3s ease; /* Menambahkan transisi untuk efek filter */
+}
+
+.project-card:hover img {
+  filter: blur(0.9px); /* Mengubah gambar menjadi buram saat hover */
+}
+
+.project-card {
+  position: relative; /* Agar ikon bisa diposisikan secara absolut */
+  overflow: hidden; /* Untuk menyembunyikan ikon di luar area kartu */
+}
+
+.link-icon {
+  position: absolute;
+  top: 33%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0; /* Sembunyikan ikon secara default */
+  transition: opacity 0.3s ease; /* Transisi untuk efek muncul */
+  color: rgb(182, 182, 182); /* Ganti warna ikon sesuai kebutuhan */
+  pointer-events: none; /* Agar klik tidak mengganggu interaksi lain */
+}
+
+.project-card:hover .link-icon {
+  opacity: 1; /* Tampilkan ikon saat hover */
+  pointer-events: auto; /* Aktifkan interaksi saat ikon muncul */
+}
+/* end Card Projects */
+/* end Card Projects */
+/* end Card Projects */
+
+/* Start sertifikat section */
+.certification-section {
+  display: flex;
+  flex-direction: column; /* Mengatur arah kolom */
+  align-items: center; /* Memusatkan item secara horizontal */
+}
+
+.see-more-container {
+  display: flex;
+  justify-content: center; /* Memusatkan secara horizontal */
+  align-items: center;
+  margin-top: 20px; /* Tambahkan jarak atas jika diperlukan */
+  width: 100%;
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Memusatkan tombol secara horizontal */
+  margin-top: 20px; /* Jarak atas tombol */
+}
+
+.see-more-button {
+  padding: 10px 20px;
+  background-color: #007BFF; /* Warna latar belakang */
+  color: white; /* Warna teks */
+  border: none;
+  border-radius: 5px; /* Sudut membulat */
+  cursor: pointer; /* Kursor tangan saat hover */
+  font-size: 16px; /* Ukuran font */
+  transition: background-color 0.3s; /* Transisi untuk efek hover */
+}
+
+.see-more-button:hover {
+  background-color: #0056b3; /* Warna saat hover */
+}
+
+/* Responsif */
+@media (max-width: 640px) {
+  .see-more-button {
+      width: 100%; /* Tombol mengambil lebar penuh pada layar kecil */
+      font-size: 14px; /* Ukuran font lebih kecil pada layar kecil */
+  }
+}
+
+/* Endsertifikat section */

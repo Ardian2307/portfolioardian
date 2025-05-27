@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Menu Navigasi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnH/4eV13T9xgnC6J9Gq4+IenF2eF5HtJbNw9U7b0z1vU6oZunN1UNZVxZz0E5bF1aVVhz5Fw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="icon" type="image/png" href="images/iconweb.png">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#4A90E2',  // Bisa sesuaikan dengan warna brand portfolio
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Tailwind custom styles */
+        .navbar {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .text-primary {
+            color: #3490dc;
+            /* Contoh warna utama */
+        }
+
+        .hover\:text-primary:hover {
+            color: #3490dc;
+            /* Contoh warna utama saat hover */
+        }
+
+        /* Animasi untuk menu mobile */
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(100%);
+            }
+        }
+
+        .slide-in {
+            animation: slideIn 0.5s forwards;
+        }
+
+        .slide-out {
+            animation: slideOut 0.5s forwards;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Tali di atas dan bawah */
+        .card .tali-atas,
+        .card .tali-bawah {
+            position: absolute;
+            height: 4px;
+            background-color: #4A90E2;
+            /* Warna tali */
+            transition: width 0.4s ease;
+            /* Efek transisi halus */
+        }
+
+        .card .tali-atas {
+            top: 0;
+            left: 0;
+            width: 0;
+        }
+
+        .card .tali-bawah {
+            bottom: 0;
+            left: 0;
+            width: 0;
+        }
+
+        /* Tali kiri dan kanan */
+        .card .tali-kiri,
+        .card .tali-kanan {
+            position: absolute;
+            width: 4px;
+            background-color: #4A90E2;
+            /* Warna tali */
+            transition: height 0.4s ease;
+            /* Efek transisi halus */
+        }
+
+        .card .tali-kiri {
+            left: 0;
+            top: 0;
+            height: 0;
+        }
+
+        .card .tali-kanan {
+            right: 0;
+            top: 0;
+            height: 0;
+        }
+
+        /* Menambah efek tali yang lebih panjang saat hover */
+        .card:hover .tali-atas {
+            width: 100%;
+            /* Memperpanjang tali atas */
+        }
+
+        .card:hover .tali-bawah {
+            width: 100%;
+            /* Memperpanjang tali bawah */
+        }
+
+        .card:hover .tali-kiri {
+            height: 100%;
+            /* Memperpanjang tali kiri */
+        }
+
+        .card:hover .tali-kanan {
+            height: 100%;
+            /* Memperpanjang tali kanan */
+        }
+
+        /* Efek tambahan saat hover pada gambar dan kartu */
+        .card:hover .card-image {
+            transform: scale(1.1);
+            /* Memperbesar gambar saat hover */
+        }
+    </style>
+
+</head>
+
+<body class="bg-gray-100">
+
+    <!--Awal Menu Navbar -->
+    <!--Awal Menu Navbar -->
+    <!--Awal Menu Navbar -->
+    <nav class="navbar fixed top-0 left-0 w-full bg-white shadow-md z-50">
+        <div class="max-w-6xl mx-auto px-4 py-2 flex items-center justify-between">
+            <div class="flex items-center text-2xl font-semibold text-primary">
+                <img src="images/logopribadi.png" class="w-12 mr-2">
+                <a href="#">Ardian's Rahman</a>
+            </div>
+
+            <!-- Menu for large screens -->
+            <ul class="hidden md:flex space-x-6 text-gray-700 font-medium font-medium">
+                <li><a href="#home" class="hover:text-primary">Home</a></li>
+                <li><a href="#about" class="hover:text-primary">About Me</a></li>
+                <li><a href="#skills" class="hover:text-primary">Skills</a></li>
+                <li><a href="#projects" class="hover:text-primary">Projects</a></li>
+                <li><a href="#certification" class="hover:text-primary">Certification</a></li>
+            </ul>
+
+            <!-- Hamburger Icon for mobile -->
+            <button id="hamburger" class="md:hidden text-gray-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <!-- Overlay -->
+        <div id="overlay" class="fixed inset-0 bg-gray-700 opacity-50 hidden transition-opacity duration-500"></div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="md:hidden bg-white w-auto max-w-xs py-3 px-4 space-y-4 text-center text-gray-700 hidden fixed top-16 right-0 z-50 shadow-xl rounded-sm transform transition-transform duration-300 ease-in-out shadow-md z-50">
+            <!-- Menu items -->
+            <a href="#home"
+                class="block hover:text-blue-500 text-base font-semibold menu-item transition-colors duration-200 hover:bg-blue-500 hover:text-white">Home</a>
+            <a href="#about"
+                class="block hover:text-blue-500 text-base font-semibold menu-item transition-colors duration-200 hover:bg-blue-500 hover:text-white">About
+                Me</a>
+            <a href="#skills"
+                class="block hover:text-blue-500 text-base font-semibold menu-item transition-colors duration-200 hover:bg-blue-500 hover:text-white">Skills</a>
+            <a href="#projects"
+                class="block hover:text-blue-500 text-base font-semibold menu-item transition-colors duration-200 hover:bg-blue-500 hover:text-white">Projects</a>
+            <a href="#certification"
+                class="block hover:text-blue-500 text-base font-semibold menu-item transition-colors duration-200 hover:bg-blue-500 hover:text-white">Certification</a>
+        </div>
+        <script>
+            window.addEventListener('scroll', function () {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) { // Atur nilai sesuai kebutuhan Anda
+                    navbar.classList.add('navbar-transparent');
+                } else {
+                    navbar.classList.remove('navbar-transparent');
+                }
+            });
+        </script>
+
+    </nav>
+    <!-- Akhir Menu Navbar -->
+    <!-- Akhir Menu Navbar -->
+    <!-- Akhir Menu Navbar -->
+
+    <!-- Awal Section Home -->
+    <!-- Awal Section Home -->
+    <!-- Awal Section Home -->
+    <section id="home"
+        class="h-screen bg-sky-50 text-center flex items-center justify-center relative overflow-hidden px-4 sm:px-10">
+        <!-- Background Animation -->
+        <div
+            class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-primary to-cyan-300 opacity-60 z-0 animate-pulse">
+        </div>
+
+        <!-- Content Wrapper -->
+        <div class="z-10 text-center space-y-6">
+
+            <!-- Foto dengan Frame Membulat dan Efek Hover -->
+            <div
+                class="mx-auto w-64 h-64 sm:w-48 sm:h-48 rounded-full overflow-hidden shadow-[0_0_30px_#0002A1] transform transition duration-500 hover:scale-110 hover:rotate-12 hover:shadow-[0_0_20px_#7900FF]">
+                <img src="images/profil.jpg" alt="Foto Profil" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Nama dengan Animasi Fade In -->
+            <h1 class="text-3xl sm:text-5xl font-bold text-white animate__animated animate__fadeIn animate__delay-1s">
+                Hi, I'm Ardian Rahman
+            </h1>
+
+            <!-- Deskripsi dengan Animasi Ketik -->
+            <div class="text-lg sm:text-xl text-gray-800">
+                <p class="typing-animation text-sm lg:text-xl">
+                    Beginner | Frontend Web Developer
+                </p>
+                <p class="typing-animation text-sm lg:text-2xl">
+                    &
+                </p>
+                <p class="typing-animation text-sm lg:text-xl">
+                    Beginner | Network Engineering
+                </p>
+                <p class="typing-animation text-sm lg:text-xl pt-2 font-serif">
+                    <i>Saya membuat Halaman Website ini sepenuh Hati dan atas kemauan diri saya sendiri untuk belajar
+                        membangun Web Portfolio yang Sederhana</i>
+                </p>
+            </div>
+
+            <!-- Tombol untuk Scroll ke Section Lain -->
+            <a href="#about"
+                class="mt-6 inline-block bg-primary text-white px-7 py-3 rounded-full text-lg font-semibold hover:bg-indigo-700 transition-all duration-300 transform hover:scale-110">
+                Learn More About Me
+            </a>
+        </div>
+    </section>
+    <!-- Akhir Section Home -->
+    <!-- Akhir Section Home -->
+    <!-- Akhir Section Home -->
+
+    <!-- Awal Section About Me -->
+    <!-- Awal Section About Me -->
+    <!-- Awal Section About Me -->
+    <section id="about" class="bg-gray-50 text-center flex items-center justify-center">
+        <section class="max-w-7xl mx-auto px-6">
+            <div
+                class="relative bg-white rounded-lg shadow-xl overflow-hidden flex flex-col md:flex-row transform transition-all duration-300 hover:scale-105 hover:shadow-2xl card">
+
+                <!-- Tali Lurus pada Ujung Kartu -->
+                <div class="tali-atas"></div>
+                <div class="tali-bawah"></div>
+                <div class="tali-kiri"></div>
+                <div class="tali-kanan"></div>
+
+                <!-- Foto Kiri dengan Hover Effect -->
+                <div class="md:w-1/3 overflow-hidden relative">
+                    <img src="images/about.jpg" alt="Foto Profil"
+                        class="object-cover w-full h-full transition-transform duration-500 hover:scale-110 card-image">
+                </div>
+
+                <!-- Konten Card Kanan -->
+                <div class="md:w-2/3 p-8">
+                    <h2 class="text-4xl font-semibold text-gray-800 mb-4">About Me</h2>
+                    <p class="text-gray-600 mb-6">
+                        Hello! I am John Doe, a passionate web developer with a keen interest in creating beautiful and
+                        functional websites. I have experience working with various web technologies such as HTML, CSS,
+                        JavaScript, and React. My goal is to bring creative ideas to life through code, ensuring the
+                        user experience is at the forefront of everything I do.
+                    </p>
+                    <p class="text-gray-600">
+                        In my free time, I enjoy exploring new technologies, learning new programming languages, and
+                        contributing to open-source projects. Feel free to connect with me!
+                    </p>
+                </div>
+            </div>
+        </section>
+    </section>
+    <!-- Akhir Section About Me -->
+    <!-- Akhir Section About Me -->
+    <!-- Akhir Section About Me -->
+
+    <!-- Awal Section My Skills -->
+    <!-- Awal Section My Skills -->
+    <!-- Awal Section My Skills -->
+    <section id="skills" class="py-19 bg-gray-50 text-center">
+        <h2 class="text-4xl font-semibold mb-8">My Skills</h2>
+        <div class="container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- HTML Skill -->
+            <div class="skill-card p-4">
+                <div class="icon-container">
+                    <i class="fab fa-html5 fa-4x text-orange-500"></i>
+                </div>
+                <h3 class="text-xl font-semibold">HTML</h3>
+                <p class="text-gray-600">Mark up your web with semantic HTML5</p>
+            </div>
+
+            <!-- CSS Skill -->
+            <div class="skill-card p-4">
+                <div class="icon-container">
+                    <i class="fab fa-css3-alt fa-4x text-blue-500"></i>
+                </div>
+                <h3 class="text-xl font-semibold">CSS</h3>
+                <p class="text-gray-600">Style your web with beautiful CSS3</p>
+            </div>
+
+            <!-- JavaScript Skill -->
+            <div class="skill-card p-4">
+                <div class="icon-container">
+                    <i class="fab fa-js fa-4x text-yellow-500"></i>
+                </div>
+                <h3 class="text-xl font-semibold">JavaScript</h3>
+                <p class="text-gray-600">Make interactive websites with JavaScript</p>
+            </div>
+
+            <!-- Bootstrap Skill -->
+            <div class="skill-card p-4">
+                <div class="icon-container">
+                    <i class="fab fa-bootstrap fa-4x text-purple-600"></i>
+                </div>
+                <h3 class="text-xl font-semibold">Bootstrap</h3>
+                <p class="text-gray-600">Build responsive layouts with Bootstrap</p>
+            </div>
+
+            <!-- Figma Skill -->
+            <div class="skill-card p-4">
+                <div class="icon-container">
+                    <img src="images/Icon.png" alt="Figma" class="w-16 h-16 mx-auto">
+                </div>
+                <h3 class="text-xl font-semibold">Figma</h3>
+                <p class="text-gray-600">Design with Figma for user interfaces</p>
+            </div>
+
+            <!-- TailwindCSS Skill -->
+            <div class="skill-card p-4">
+                <div class="icon-container">
+                    <img src="images/tailwind.png" alt="TailwindCSS" class="w-16 h-16 mx-auto">
+                </div>
+                <h3 class="text-xl font-semibold">TailwindCSS</h3>
+                <p class="text-gray-600">Build UI with utility-first TailwindCSS</p>
+            </div>
+        </div>
+    </section>
+    <!-- Akhir Section My skills -->
+    <!-- Akhir Section My skills -->
+    <!-- Akhir Section My skills -->
+
+    <!-- Awal Section projects -->
+    <!-- Awal Section projects -->
+    <!-- Awal Section projects -->
+    <section id="projects">
+        <section class="py-0 bg-gray-50">
+            <div class="max-w-6xl mx-auto text-center mb-8 pt-16">
+                <h2 class="text-4xl font-semibold text-gray-800 mt-0 pt-0">Our Projects</h2>
+                <p class="text-gray-600 mt-4">Explore some of the amazing projects we've worked on.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
+                <!-- Card 1 -->
+                <div
+                    class="group relative overflow-hidden rounded-lg shadow-lg bg-white transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl">
+                    <img src="images/projects1.png" alt="Project 1"
+                        class="w-full h-56 object-cover group-hover:opacity-80 transition-opacity duration-300">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all duration-300">
+                    </div>
+                    <div class="absolute bottom-0 p-4 text-white">
+                        <h3 class="text-2xl font-bold">Project 1</h3>
+                        <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div
+                        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <a href="#" class="text-white text-3xl">
+                            <i class="fas fa-link"></i>
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- Card 2 -->
+                <div
+                    class="group relative overflow-hidden rounded-lg shadow-lg bg-white transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl">
+                    <img src="images/projects2.png" alt="Project 2"
+                        class="w-full h-56 object-cover group-hover:opacity-80 transition-opacity duration-300">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all duration-300">
+                    </div>
+                    <div class="absolute bottom-0 p-4 text-white">
+                        <h3 class="text-2xl font-bold">Project 2</h3>
+                        <p class="mt-2">Curabitur vehicula urna a lorem egestas venenatis.</p>
+                    </div>
+                    <div
+                        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <a href="#" class="text-white text-3xl">
+                            <i class="fas fa-link"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="group relative overflow-hidden rounded-lg shadow-lg bg-white transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl">
+                    <img src="images/projects3.png" alt="Project 3"
+                        class="w-full h-56 object-cover group-hover:opacity-80 transition-opacity duration-300">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all duration-300">
+                    </div>
+                    <div class="absolute bottom-0 p-4 text-white">
+                        <h3 class="text-2xl font-bold">Project 3</h3>
+                        <p class="mt-2">Donec sollicitudin nibh sit amet dui aliquet, at viverra arcu scelerisque.</p>
+                    </div>
+                    <div
+                        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <a href="#" class="text-white text-3xl">
+                            <i class="fas fa-link"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div
+                    class="group relative overflow-hidden rounded-lg shadow-lg bg-white transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl">
+                    <img src="images/projects4.png" alt="Project 4"
+                        class="w-full h-56 object-cover group-hover:opacity-80 transition-opacity duration-300">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all duration-300">
+                    </div>
+                    <div class="absolute bottom-0 p-4 text-white">
+                        <h3 class="text-2xl font-bold">Project 4</h3>
+                        <p class="mt-2">Vivamus pharetra dolor quis nunc luctus, id fermentum elit eleifend.</p>
+                    </div>
+                    <div
+                        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <a href="#" class="text-white text-3xl">
+                            <i class="fas fa-link"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div
+                    class="group relative overflow-hidden rounded-lg shadow-lg bg-white transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl">
+                    <img src="images/projects5.png" alt="Project 5"
+                        class="w-full h-56 object-cover group-hover:opacity-80 transition-opacity duration-300">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all duration-300">
+                    </div>
+                    <div class="absolute bottom-0 p-4 text-white">
+                        <h3 class="text-2xl font-bold">Project 5</h3>
+                        <p class="mt-2">Nam hendrerit urna sit amet nulla tempor, et convallis sapien vehicula.</p>
+                    </div>
+                    <div
+                        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <a href="#" class="text-white text-3xl">
+                            <i class="fas fa-link"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div
+                    class="group relative overflow-hidden rounded-lg shadow-lg bg-white transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl">
+                    <img src="images/projects6.png" alt="Project 6"
+                        class="w-full h-56 object-cover group-hover:opacity-80 transition-opacity duration-300">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all duration-300">
+                    </div>
+                    <div class="absolute bottom-0 p-4 text-white">
+                        <h3 class="text-2xl font-bold">Project 6</h3>
+                        <p class="mt-2">Sed cursus justo et odio luctus, et interdum risus fringilla.</p>
+                    </div>
+                    <div
+                        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <a href="#" class="text-white text-3xl">
+                            <i class="fas fa-link"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+    <!-- Akhir Section Projects -->
+    <!-- Akhir Section Projects -->
+    <!-- Akhir Section Projects -->
+
+    <!-- Awal Section Certification -->
+    <!-- Awal Section Certification -->
+    <!-- Awal Section Certification -->
+    <section id="certification"
+        class="min-h-screen bg-gray-50 text-center flex flex-col items-center justify-center py-0">
+        <h2 class="text-4xl font-semibold mb-8 pt-12">My Certifications</h2>
+        <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-6 p-4">
+            <!-- Tambahkan elemen grid di sini -->
+            <!-- Card 1 -->
+            <div
+                class="max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden transition transform hover:scale-105 hover:shadow-xl">
+                <img class="w-full h-54 object-cover" src="images/sertif3.png" alt="Certificate Image">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold mb-2 text-gray-800">Certificate Title 1</h2>
+                    <p class="text-gray-600 mb-4">Issued by: Issuer Name 1</p>
+                    <p class="text-gray-700 mb-4">This is a brief description of the certificate. It explains what the
+                        certificate is about and its significance.</p>
+                    <a href="https://digitalent.komdigi.go.id/cek-sertifikat?registrasi=1948203850-48"
+                        class="block text-center bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">View
+                        Details</a>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div
+                class="max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden transition transform hover:scale-105 hover:shadow-xl">
+                <img class="w-full h-54 object-cover" src="images/sertif2.png" alt="Certificate Image">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold mb-2 text-gray-800">Certificate Title 2</h2>
+                    <p class="text-gray-600 mb-4">Issued by: Issuer Name 2</p>
+                    <p class="text-gray-700 mb-4">This is a brief description of the certificate. It explains what the
+                        certificate is about and its significance.</p>
+                    <a href="https://www.netacad.com/certificates?issuanceId=4f1c4e9e-b929-4f1d-877b-2db9d9a7e2c3"
+                        class="block text-center bg-blue-400 text-white py-2 rounded-lg hover:bg-blue-500 transition">View
+                        Details</a>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div
+                class="max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden transition transform hover:scale-105 hover:shadow-xl">
+                <img class="w-full h-54 object-cover" src="images/sertif1.png" alt="Certificate Image">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold mb-2 text-gray-800">Certificate Title 3</h2>
+                    <p class="text-gray-600 mb-4">Issued by: Issuer Name 3</p>
+                    <p class="text-gray-700 mb-4">This is a brief description of the certificate. It explains what the
+                        certificate is about and its significance.</p>
+                    <a href="https://www.hackerrank.com/certificates/fcb1ec391d17"
+                        class="block text-center bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition">View
+                        Details</a>
+                </div>
+            </div>
+        </div>
+        <div class="see-more-container pb-2">
+            <a href="sertifikat.html" class="see-more-button">See More Certification</a>
+        </div>
+    </section>
+    <!-- Akhir certification -->
+    <!-- Akhir certification -->
+    <!-- Akhir certification -->
+
+    <!-- Awal footer -->
+    <!-- Awal footer -->
+    <!-- Awal footer -->
+    <footer class="bg-gradient-to-r from-blue-800 via-blue-600 to-blue-500 text-white py-10">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Kolom 1: Tentang Kami -->
+          <div>
+            <h3 class="text-2xl font-semibold mb-4 text-white">About Website</h3>
+            <p class="text-sm text-gray-300">Portfolio ini adalah tempat bagi saya untuk berbagi proyek-proyek yang telah saya kerjakan, serta visi dan passion saya dalam [Front-End WebDev dan Network Engineering]. Saya percaya bahwa setiap karya memiliki cerita, dan saya ingin berbagi cerita tersebut dengan Anda.</p>
+          </div>
+      
+          <!-- Kolom 2: Link Navigasi -->
+          <div>
+            <h3 class="text-2xl font-semibold mb-4 text-white">Navigation</h3>
+            <ul>
+              <li><a href="#home" class="text-sm text-gray-300 hover:text-yellow-300 transition-colors duration-300">Home</a></li>
+              <li><a href="#about" class="text-sm text-gray-300 hover:text-yellow-300 transition-colors duration-300">About Me</a></li>
+              <li><a href="#skills" class="text-sm text-gray-300 hover:text-yellow-300 transition-colors duration-300">Skills</a></li>
+              <li><a href="#projects" class="text-sm text-gray-300 hover:text-yellow-300 transition-colors duration-300">Projects</a></li>
+              <li><a href="#certification" class="text-sm text-gray-300 hover:text-yellow-300 transition-colors duration-300">Certification</a></li>
+            </ul>
+          </div>
+      
+          <!-- Kolom 3: Link Sosial Media -->
+          <div>
+            <h3 class="text-2xl font-semibold mb-4 text-white">Social Media</h3>
+            <div class="flex space-x-4"> <!-- Mengurangi jarak antar ikon dengan space-x-4 -->
+              <!-- Ikon Instagram menggunakan Font Awesome dengan ukuran lebih besar -->
+              <a href="https://www.instagram.com/arxvianxian/profilecard/?igsh=MXRscjVyZTdxbDlrOA==" class="text-gray-300 hover:text-yellow-300 transition-all duration-300 transform hover:scale-125">
+                <i class="fa-brands fa-instagram w-10 h-10 text-2xl"></i>
+              </a>
+              
+              <!-- Ikon LinkedIn menggunakan Font Awesome dengan ukuran lebih besar -->
+              <a href="https://www.linkedin.com/in/arvxianxianardianrahman23?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="text-gray-300 hover:text-yellow-300 transition-all duration-300 transform hover:scale-125">
+                <i class="fa-brands fa-linkedin w-10 h-10 text-2xl"></i>
+              </a>
+      
+              <!-- Ikon Facebook menggunakan Font Awesome dengan ukuran lebih besar -->
+              <a href="https://www.facebook.com/share/1Dspp9DvsD/" class="text-gray-300 hover:text-yellow-300 transition-all duration-300 transform hover:scale-125">
+                <i class="fa-brands fa-facebook w-10 h-10 text-2xl"></i>
+              </a>
+            </div>
+          </div>
+      
+          <!-- Kolom 4: Hubungi Kami -->
+          <div>
+            <h3 class="text-2xl font-semibold mb-4 text-white">Hubungi Kami</h3>
+            <p class="text-sm text-gray-300">Email: <a href="mailto:ardianrahman310@gmail.com" class="text-yellow-300 hover:text-white transition-colors duration-300">ardianrahman310@gmail.com</a></p>
+            <p class="text-sm text-gray-300">Telp: `-'</p>
+          </div>
+        </div>
+      
+        <!-- Footer Bottom -->
+        <div class="bg-blue-700 text-center py-4 mt-8">
+          <p class="text-sm text-gray-300">© 2024 Ardian Rahman. Semua hak dilindungi.</p>
+        </div>
+      </footer>
+        
+    <!-- Akhir Footer -->
+    <!-- Akhir Footer -->
+    <!-- Akhir Footer -->
+     
+    <!-- Buat interaktif menu Hamburger -->
+    <!-- Buat interaktif menu Hamburger -->
+    <!-- Buat interaktif menu Hamburger -->
+    <script>
+        // Dapatkan elemen hamburger dan menu mobile
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuItems = document.querySelectorAll('.menu-item'); // Ambil semua item menu
+
+        // Fungsi untuk menutup menu
+        function closeMenu() {
+            mobileMenu.classList.remove('slide-in');
+            mobileMenu.classList.add('slide-out');
+            // Tambahkan delay sebelum menambahkan kelas 'hidden' agar animasi bisa berjalan
+            mobileMenu.addEventListener('animationend', function () {
+                mobileMenu.classList.add('hidden');
+            }, { once: true });
+        }
+
+        // Tambahkan event listener untuk klik pada hamburger
+        hamburger.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.remove('slide-out');
+                mobileMenu.classList.add('slide-in');
+            } else {
+                closeMenu();
+            }
+        });
+
+        // Tambahkan event listener untuk klik pada setiap item menu
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                closeMenu(); // Menutup menu saat item diklik
+            });
+        });
+    </script>
+    <!-- Akhir Buat interaktif menu Hamburger -->
+    <!-- Akhir Buat interaktif menu Hamburger -->
+    <!-- Akhir Buat interaktif menu Hamburger -->
+
+    <script>
+        // Script untuk animasi muncul saat scroll
+        const skills = document.querySelectorAll('.skill-card');
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__fadeInUp');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        skills.forEach(skill => {
+            observer.observe(skill);
+        });
+
+
+
+        //untuk my skills
+        // Script untuk animasi muncul saat scroll
+        const skills = document.querySelectorAll('.skill-card');
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__fadeInUp');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        skills.forEach(skill => {
+            observer.observe(skill);
+        });
+        // akhir my skills
+
+
+    </script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
